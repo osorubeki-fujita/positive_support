@@ -12,6 +12,7 @@ Gem::Specification.new do |spec|
   spec.summary       = "This gem provides useful extensions to Ruby built-in libraries."
   # spec.description   = %q{TODO: Write a longer description or delete this line.}
   spec.homepage      = "https://github.com/osorubeki-fujita/positive_support"
+  spec.license = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
   # delete this section to allow pushing this gem to any host.
