@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 class String
   alias :__to_s__ :to_s
   private :__to_s__
@@ -95,8 +97,51 @@ module PositiveSupport::StringExt
     gsub( /\// , "\\" )
   end
 
+  def convert_meta_character_in_regexp
+    gsub( /(?=[\(\)\[\]\{\}\.\?\+\*\|\\])/ , "\\" )
+  end
+
   def convert_comma_between_number_to_dot
-    gsub( /(\d+)、(\d+)/ ) { $1 + "・" + $2 }
+    gsub( /(?<=\d)、(?=\d)/ , "・" )
   end
 
 end
+
+__END__
+
+
+  def convert_meta_character_in_regexp
+    meta_chars = [ "\(" , "\)" , "\[" , "\]" , "\{" , "\}" , "\." , "\?" , "\+" , "\*" , "\|" , "\\" ]
+    char_ary = self.split( // )
+    puts char_ary.to_s
+    char_ary = char_ary.map { | char |
+      ary_for_debug = ::Array.new
+      meta_chars.each do | meta_char |
+        char = char.gsub( meta_char , "\\" + meta_char )
+        ary_for_debug << char
+      end
+      puts ary_for_debug.to_s
+      char
+    }
+    puts char_ary.to_s
+    char_ary.join
+  end
+  
+irb(main):013:0> "+".gsub( "+" , "\\" + "+" )
+=> ""
+irb(main):014:0> "\\" + "+"
+=> "\\+"
+irb(main):015:0> "2+".gsub( "+" , "\\" + "+" )
+=> "2"
+irb(main):016:0> "2+".gsub( "\+" , "\\" + "+" )
+=> "2"
+irb(main):017:0> "2+".gsub( /\+/ , "\\" + "+" )
+=> "2"
+irb(main):018:0> "+".gsub( /\+/ , "\\" + "+" )
+=> ""
+irb(main):019:0> "+".gsub( /(?=\+)/ , "\\" )
+=> "\\+"
+irb(main):020:0> "2+".gsub( /(?=\+)/ , "\\" )
+=> "2\\+"
+irb(main):021:0> "+1".gsub( /(?=\+)/ , "\\" )
+=> "\\+1"
