@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
-
 class String
+
   alias :__to_s__ :to_s
   private :__to_s__
   undef :to_s
@@ -76,7 +75,7 @@ module PositiveSupport::StringExt
   def hour_and_min?
      ::PositiveSupport::RegexpLibrary.string_of_hour_and_min =~ self
   end
-  
+
   alias :is_hour_and_min? :hour_and_min?
 
   def to_array_of_hour_and_min
