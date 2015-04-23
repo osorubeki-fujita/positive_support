@@ -4,7 +4,7 @@ require "active_support"
 require "active_support/core_ext"
 require "moji"
 
-[ :basic_object , :date_time , :time , :hash , :symbol , :integer , :string ].each do | filename |
+[ :basic_object , :date_time , :time , :hash , :symbol , :integer , :float , :string ].each do | filename |
   require_relative "positive_support/#{ filename }_ext"
 end
 
@@ -16,7 +16,7 @@ module PositiveSupport
 
   included do
 
-    [ :BasicObject  , :DateTime , :Time , :Hash , :Symbol , :Integer , :String ].each do | class_name |
+    [ :BasicObject  , :DateTime , :Time , :Hash , :Symbol , :Integer , :Float , :String ].each do | class_name |
       eval <<-INCLUDE
         ::#{ class_name }.class_eval do
           include ::PositiveSupport::#{ class_name }Ext
