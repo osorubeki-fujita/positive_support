@@ -9,6 +9,8 @@ require "moji"
 end
 
 require_relative "positive_support/regexp_library"
+require_relative "positive_support/checker"
+require_relative "positive_support/checker/error_factory"
 
 module PositiveSupport
 
