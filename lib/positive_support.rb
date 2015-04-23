@@ -28,6 +28,10 @@ module PositiveSupport
       include PositiveSupport::TimeExt
     end
 
+    ::BasicObject.class_eval do
+      include PositiveSupport::Checker
+    end
+
   end
 
 end
