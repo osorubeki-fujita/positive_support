@@ -1,10 +1,14 @@
-# -*- coding: utf-8 -*-
-
 require 'spec_helper'
 
+this_file = ::File.expand_path( ::File.dirname( __FILE__ ) )
+latest_version = open( "#{ this_file }/../LatestVersion" , "r:utf-8" ).read
+
+version = "0.1.10"
+
 describe PositiveSupport do
-  it 'has a version number' do
-    expect(PositiveSupport::VERSION).to eq( "0.0.2" )
+  it "has a version number \'#{ version }\'" do
+    expect( PositiveSupport::VERSION ).to eq( version )
+    expect( PositiveSupport::VERSION >= latest_version ).to eq( true )
   end
 end
 
