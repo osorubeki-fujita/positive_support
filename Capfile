@@ -4,7 +4,7 @@ require 'capistrano/setup'
 # Include default deployment tasks
 require 'capistrano/deploy'
 
-# The gem 'deployer' is not released on RubyGems'
+# The gem 'deployer' is not released on RubyGems
 require 'deployer'
 
 # Include tasks from other gems included in your Gemfile
