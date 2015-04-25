@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'deployer'
 
 spec_filename = ::File.expand_path( ::File.dirname( __FILE__ ) )
-version = "0.2.0"
+version = "0.2.1"
 
 describe PositiveSupport do
   it "has a version number \'#{ version }\'" do
