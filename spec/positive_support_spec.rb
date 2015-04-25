@@ -1,14 +1,13 @@
 require 'spec_helper'
+require 'deployer'
 
-this_file = ::File.expand_path( ::File.dirname( __FILE__ ) )
-latest_version = open( "#{ this_file }/../LatestVersion" , "r:utf-8" ).read
-
-version = "0.1.11"
+spec_filename = ::File.expand_path( ::File.dirname( __FILE__ ) )
+version = "0.1.12"
 
 describe PositiveSupport do
   it "has a version number \'#{ version }\'" do
     expect( PositiveSupport::VERSION ).to eq( version )
-    expect( PositiveSupport::VERSION >= latest_version ).to eq( true )
+    expect( ::Deployer.version_check( PositiveSupport::VERSION , spec_filename ) ).to eq( true )
   end
 end
 
