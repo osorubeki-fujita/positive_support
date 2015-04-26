@@ -8,32 +8,38 @@ module PositiveSupport::BasicObjectExt
 
     # 上位の名前空間のリスト（すべて）
     # @return [::Array]
-    def upper_namespaces
-        # eval( self.name.split( "::" )[0..-2].join( "::" ) )
-        # Module.nesting[1]
-      self.module_eval do
-        current_namespace = self
-        return ::Module.nesting
+    def upper_namespaces( _has_upper_namespaces = nil )
+      if _has_upper_namespaces or ( _has_upper_namespaces.nil? and has_upper_namespaces? )
+        splited = self.name.split( "::" )[0..-2]
+        ary = ::Array.new
+        for i in 0..( splited.length - 1 )
+          ary << eval( splited[ 0..i ].join( "::" ) )
+        end
+        ary.reverse
+      else
+        nil
       end
     end
 
     # 上位の名前空間が存在するか否かを判定するメソッド
     # @return [Boolean]
     def has_upper_namespaces?
-      upper_namespaces.length > 1
-      # /\:\:/ === name
+      # upper_namespaces.length > 1
+      /\:\:/ === name
     end
 
     # 上位の名前空間のリスト（すぐ上のみ）
     # @return [::Class (Const)]
     def upper_namespace
-      _upper_namespaces = upper_namespaces.length > 1
-      if _upper_namespaces.length > 1
-        _upper_namespaces[1]
+      _has_upper_namespaces = has_upper_namespaces?
+      if _has_upper_namespaces
+        upper_namespaces( _has_upper_namespaces ).first
       else
         nil
       end
     end
+    
+    # @!endgroup
 
   end
 

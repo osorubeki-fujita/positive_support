@@ -33,6 +33,10 @@ module PositiveSupport
     ::BasicObject.class_eval do
       include PositiveSupport::Checker
     end
+    
+    ::Module.class_eval do
+      include ::PositiveSupport::BasicObjectExt::ClassMethods
+    end
 
   end
 

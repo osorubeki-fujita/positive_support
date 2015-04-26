@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'deployer'
 
 spec_filename = ::File.expand_path( ::File.dirname( __FILE__ ) )
-version = "0.2.2"
+version = "0.2.3"
 
 describe PositiveSupport do
   it "has a version number \'#{ version }\'" do
@@ -10,6 +10,8 @@ describe PositiveSupport do
     expect( ::Deployer.version_check( PositiveSupport::VERSION , spec_filename ) ).to eq( true )
   end
 end
+
+require_relative 'positive_support_spec/basic_object_ext.rb'
 
 describe String do
   it "is converted by PositiveSupport\#convert_meta_character_in_regexp" do
