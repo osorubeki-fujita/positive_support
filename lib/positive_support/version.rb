@@ -1,3 +1,3 @@
 module PositiveSupport
-  VERSION = "0.3.2"
+  VERSION = ::File.open( "#{ ::File.dirname( __FILE__ ) }/../../.current_version" , "r:utf-8" ).read.chomp
 end
